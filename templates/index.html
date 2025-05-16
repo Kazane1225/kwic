@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KWIC Search</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <h1>KWIC Search Tool</h1>
+  <form id="kwic-form" action="/" method="POST" enctype="multipart/form-data">
+    <label>Search Type:
+      <select name="search_type">
+        <option value="token">Token</option>
+        <option value="pos">POS</option>
+        <option value="entity">Entity</option>
+        <option value="ngram">N-gram</option>
+      </select>
+    </label>
+
+    <label>Query: <input type="text" name="query" required></label>
+
+    <label>Window: <input type="number" name="window" value="5"></label>
+
+    <label>Sort Mode:
+      <select name="sort_mode">
+        <option value="sequential">Sequential</option>
+        <option value="token">By Token</option>
+        <option value="pos">By POS</option>
+      </select>
+    </label>
+
+    <label>Highlight:
+      <input type="checkbox" name="attrs" value="bold" checked> Bold
+      <input type="checkbox" name="attrs" value="underline"> Underline
+    </label>
+
+    <label>Text:
+      <textarea name="text" placeholder="Enter your text here..."></textarea>
+    </label>
+
+    <label for="file-upload" class="drop-area" id="drop-area">
+      <p>📂 Drag & Drop your .txt file here<br>or click to browse</p>
+    </label>
+    <input type="file" name="file" id="file-upload" accept=".txt" />
+
+
+
+    <button type="submit">Search</button>
+  </form>
+
+
+  <h2>Results</h2>
+  <ul id="results">
+    {% for line, token_after, _ in results %}
+      <li>{{ line|safe }} ⟶ NEXT: {{ token_after }}</li>
+    {% endfor %}
+  </ul>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+:root {
+  --bg: #fefeff;
+  --accent: #ff88bb;
+  --accent-hover: #ff6699;
+  --text: #333;
+  --input-bg: #fdfdfd;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+  --font: 'Segoe UI', 'Hiragino Kaku Gothic ProN', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+h1 {
+  color: var(--accent);
+  animation: fadeSlideIn 0.4s ease-out;
+  text-align: center;
+}
+
+form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 15px var(--shadow);
+  margin: 0 auto 2rem;
+  max-width: 800px;
+  animation: fadeSlideIn 0.5s ease-out;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #444;
+}
+
+textarea,
+input,
+select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  margin-top: 0.3rem;
+  font-size: 1rem;
+}
+
+button {
+  margin-top: 1.2rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+li {
+  background: #fff;
+  margin-bottom: 0.7rem;
+  padding: 1rem;
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius);
+  font-family: monospace;
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.drop-area {
+  border: 2px dashed #bbb;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 12px;
+  background: #fefefe;
+  color: #888;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+}
+
+.drop-area:hover {
+  background: #fdf0f4;
+  color: #555;
+}
+
+.drop-area.dragover {
+  background: #ffe4ec;
+  border-color: #ff88bb;
+  color: #222;
+}
+
+#file-upload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ モバイル対応 */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  form, ul {
+    padding: 1rem;
+  }
+
+  textarea {
+    height: 120px;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+}
