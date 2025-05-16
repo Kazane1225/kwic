@@ -1,10 +1,18 @@
 from flask import Flask, render_template, request, jsonify
 import spacy
+import spacy.cli
+import os
 from kwic import kwic_search
 from termcolor import colored
 
 app = Flask(__name__)
-nlp = spacy.load("en_core_web_sm")
+
+# ✅ モデルがなければダウンロードして読み込む
+try:
+    nlp = spacy.load("en_core_web_sm")
+except:
+    spacy.cli.download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -33,7 +41,6 @@ def index():
 
 @app.route("/ajax", methods=["POST"])
 def ajax_search():
-    # 同じロジックだがJSONで返す
     search_type = request.form.get("search_type")
     query = request.form.get("query")
     window = int(request.form.get("window", 5))
@@ -51,4 +58,5 @@ def ajax_search():
     return jsonify(results=results)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
