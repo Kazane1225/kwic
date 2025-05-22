@@ -54,7 +54,7 @@
   <h2>Results</h2>
   <ul id="results">
     {% for line, token_after, _ in results %}
-      <li id="results_Next">{{ line|safe }} ⟶ NEXT: {{ token_after }}</li>
+      <li>{{ line|safe }}<span id="results_Next"> ⟶ NEXT: </span>{{ token_after }}</li>
     {% endfor %}
   </ul>
 
