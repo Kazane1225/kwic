@@ -87,6 +87,10 @@ li {
   animation: fadeSlideIn 0.4s ease;
 }
 
+#results_Next {
+  background: #0a02f7
+}
+
 .drop-area {
   border: 2px dashed #bbb;
   padding: 2rem;
