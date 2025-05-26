@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KWIC Search</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='drag.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='spinner.js') }}" defer></script>
 </head>
 <body>
   <h1>KWIC Search Tool</h1>
+  <div id="loading" style="display: none;">
+    <div class="spinner"></div>
+  </div>
+
   <form id="kwic-form" action="/" method="POST" enctype="multipart/form-data">
     <label>Search Type:
       <select name="search_type">
@@ -54,7 +59,7 @@
   <h2>Results</h2>
   <ul id="results">
     {% for line, token_after, _ in results %}
-      <li>{{ line|safe }}<span id="results_Next"> ⟶ NEXT:{{ token_after }}</span></li>
+      <li>{{ loop.index }}. {{ line|safe }}<span id="results_Next"> ⟶ NEXT WORD: {{ token_after }}</span></li>
     {% endfor %}
   </ul>
 
